@@ -32,3 +32,22 @@ Many modern programming languages do not have visibility specifiers (a.k.a acces
   * Protocol of the method contains a substring `private` (e.g., `private`, `private - primitives`, `evaluating-private`)
 * **Example methods** - contain examples of how to use specific functionality
   * Method name begins with `example` or ends with either `Example` or `Example*` where `*` represents a number (e.g. `examplePrintf`, `example42`, `annotationExample3`, `menuActivationExample`)
+
+## How to use it?
+
+```Smalltalk
+deductor := VisibilityDeductor new.
+
+deductor isMethodPublic: Collection >> #do:. "true"
+deductor isMethodPrivate: Collection >> #do:. "false"
+deductor isMethodPrivate: Collection >> #emptyCheck. "true"
+deductor isMethodPrivate: CollectionTest >> #testCopyWithoutDuplicates. "true"
+deductor isMethodPrivate: StringTest >> #setUp. "true"
+
+deductor isClassPublic: AthensSurfaceExamples. "false"
+deductor isClassPrivate: AthensSurfaceExamples. "true"
+deductor isClassPrivate: AnnouncementsHelp "true".
+
+deductor isPackagePublic: 'RPackage-Tests' asPackage. "false"
+deductor isPackagePrivate: 'RPackage-Tests' asPackage. "true"
+```
