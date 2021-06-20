@@ -35,6 +35,29 @@ Many modern programming languages do not have visibility specifiers (a.k.a acces
 * **Example methods** - contain examples of how to use specific functionality
   * Method name begins with `example` or ends with either `Example` or `Example*` where `*` represents a number (e.g. `examplePrintf`, `example42`, `annotationExample3`, `menuActivationExample`)
 
+## How to install it?
+
+To install `VisibilityDeductor`, go to the Playground (Ctrl+OW) in your [Pharo](https://pharo.org/) image and execute the following Metacello script (select it and press Do-it button or Ctrl+D):
+
+```Smalltalk
+Metacello new
+  baseline: 'VisibilityDeductor';
+  repository: 'github://olekscode/VisibilityDeductor/src';
+  load.
+```
+
+## How to depend on it?
+
+If you want to add a dependency on `VisibilityDeductor` to your project, include the following lines into your baseline method:
+
+```Smalltalk
+spec
+  baseline: 'VisibilityDeductor'
+  with: [ spec repository: 'github://olekscode/VisibilityDeductor/src' ].
+```
+
+If you are new to baselines and Metacello, check out the [Baselines](https://github.com/pharo-open-documentation/pharo-wiki/blob/master/General/Baselines.md) tutorial on Pharo Wiki.
+
 ## How to use it?
 
 ```Smalltalk
