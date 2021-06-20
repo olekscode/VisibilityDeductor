@@ -2,7 +2,9 @@
 
 Many modern programming languages do not have visibility specifiers (a.k.a access specifiers) such as `public`, `private`, or `protected`. However, even though they can not be marked as private at language level, some methods or classes in software libraries are only meant for the internal use and are not supposed to be used by clients. For the tools that analyse the API of software libraries, it can be useful to "infer" the visibility of methods or classes even if it is not defined explicitly. This repository contains a simple package that can deduce the visibility of packages, classes, and methods in [Pharo](https://pharo.org/) programming language.
 
-## Packages that can be considered private
+## How does it work?
+
+### Packages that can be considered private
 
 * **Test packages** - contain unit tests and mock classes used for testing. They are not meant to be reused by clients.
   * When split by `-`, the package name contains the word `Test` or `Tests` (e.g., `Files-Tests`, `Fuel-Tests-Core`)
@@ -13,7 +15,7 @@ Many modern programming languages do not have visibility specifiers (a.k.a acces
 * **Help packages** - define documentation pages
   * Package name ends with `-Help` (e.g., `Pharo-Help`, `FreeType-Help`)
 
-## Classes that can be considered private
+### Classes that can be considered private
 
 * **Classes that belong to a package which can be considered private**
 * **Test classes** - define unit tests (note that tests classes may be located outside test packages)
@@ -25,7 +27,7 @@ Many modern programming languages do not have visibility specifiers (a.k.a acces
 * **Help classes** - define documentation pages
   * Class inherits from `CustomHelp` or `CustomHelp2`
 
-## Methods that can be considered private
+### Methods that can be considered private
 
 * **Method that belong to a class which can be considered private**
 * **Methods that belong to a private protocol**
