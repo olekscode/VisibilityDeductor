@@ -1,5 +1,9 @@
 # VisibilityDeductor
 
+![Build status](https://github.com/olekscode/VisibilityDeductor/workflows/CI/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/olekscode/VisibilityDeductor/badge.svg?branch=master)](https://coveralls.io/github/olekscode/VisibilityDeductor?branch=master)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/olekscode/VisibilityDeductor/master/LICENSE)
+
 Many modern programming languages do not have visibility specifiers (a.k.a access specifiers) such as `public`, `private`, or `protected`. However, even though they can not be marked as private at language level, some methods or classes in software libraries are only meant for the internal use and are not supposed to be used by clients. For the tools that analyse the API of software libraries, it can be useful to "infer" the visibility of methods or classes even if it is not defined explicitly. This repository contains a simple package that can deduce the visibility of packages, classes, and methods in [Pharo](https://pharo.org/) programming language.
 
 ## How does it work?
