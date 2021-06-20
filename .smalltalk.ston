@@ -2,14 +2,14 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'VisibilityDetector',
+      #baseline : 'VisibilityDeductor',
       #directory : 'src',
       #platforms : [ #pharo ]
     }
   ],
   #testing : {
     #coverage : {
-      #packages : [ 'VisibilityDetector' ]
+      #packages : [ 'VisibilityDeductor' ]
     }
   }
 }
