@@ -40,7 +40,7 @@ deductor := VisibilityDeductor new.
 
 deductor isMethodPublic: Collection >> #do:. "true"
 deductor isMethodPrivate: Collection >> #do:. "false"
-deductor isMethodPrivate: Collection >> #emptyCheck. "true"
+deductor isMethodPrivate: Collection >> #emptyCheck. "true (because it's in a 'private' protocol)"
 deductor isMethodPrivate: CollectionTest >> #testCopyWithoutDuplicates. "true"
 deductor isMethodPrivate: StringTest >> #setUp. "true"
 
