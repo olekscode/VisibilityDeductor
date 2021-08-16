@@ -14,7 +14,7 @@ VisibilityDeductor >> isBaselinePackage: aPackage [
 	^ aPackage name beginsWith: 'BaselineOf'
 ]
 
-{ #category : #testing }
+{ #category : #api }
 VisibilityDeductor >> isClassPrivate: aClass [
 	(self isPackagePrivate: aClass package)
 		ifTrue: [ ^ true ].
@@ -25,7 +25,7 @@ VisibilityDeductor >> isClassPrivate: aClass [
 				self isBaselineClass: aClass ] ] ]
 ]
 
-{ #category : #testing }
+{ #category : #api }
 VisibilityDeductor >> isClassPublic: aClass [
 	^ (self isClassPrivate: aClass) not
 ]
@@ -60,12 +60,17 @@ VisibilityDeductor >> isHelpPackage: aPackage [
 ]
 
 { #category : #testing }
+VisibilityDeductor >> isInitializeMethod: aMethod [
+	^ aMethod selector = 'initialize'
+]
+
+{ #category : #testing }
 VisibilityDeductor >> isMethodInPrivateProtocol: aMethod [
 	^ aMethod protocol isNotNil and: [
 		aMethod protocol includesSubstring: 'private' ]
 ]
 
-{ #category : #testing }
+{ #category : #api }
 VisibilityDeductor >> isMethodPrivate: aMethod [
 	(self isClassPrivate: aMethod methodClass)
 		ifTrue: [ ^ true ].
@@ -73,15 +78,18 @@ VisibilityDeductor >> isMethodPrivate: aMethod [
 	(self isMethodInPrivateProtocol: aMethod)
 		ifTrue: [ ^ true ].
 		
+	(self isInitializeMethod: aMethod)
+		ifTrue: [ ^ true ].
+		
 	^ self isExampleMethod: aMethod
 ]
 
-{ #category : #testing }
+{ #category : #api }
 VisibilityDeductor >> isMethodPublic: aMethod [
 	^ (self isMethodPrivate: aMethod) not
 ]
 
-{ #category : #testing }
+{ #category : #api }
 VisibilityDeductor >> isPackagePrivate: aPackage [
 	^ (self isTestPackage: aPackage) or: [
 		(self isExamplePackage: aPackage) or: [
@@ -89,7 +97,7 @@ VisibilityDeductor >> isPackagePrivate: aPackage [
 				self isBaselinePackage: aPackage ] ] ]
 ]
 
-{ #category : #testing }
+{ #category : #api }
 VisibilityDeductor >> isPackagePublic: aPackage [
 	^ (self isPackagePrivate: aPackage) not
 ]
