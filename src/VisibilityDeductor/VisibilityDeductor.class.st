@@ -6,7 +6,8 @@ Class {
 
 { #category : #testing }
 VisibilityDeductor >> isBaselineClass: aClass [
-	^ aClass inheritsFrom: BaselineOf
+	^ (aClass inheritsFrom: BaselineOf) or: [
+		aClass name beginsWith: 'BaselineOf' ]
 ]
 
 { #category : #testing }
@@ -20,9 +21,10 @@ VisibilityDeductor >> isClassPrivate: aClass [
 		ifTrue: [ ^ true ].
 		
 	^ (self isTestClass: aClass) or: [
-		(self isExampleClass: aClass) or: [
-			(self isHelpClass: aClass) or: [
-				self isBaselineClass: aClass ] ] ]
+		(self isBaselineClass: aClass) or: [ 
+			(self isTraitClass: aClass) or: [
+				(self isExampleClass: aClass) or: [
+					(self isHelpClass: aClass) ] ] ] ]
 ]
 
 { #category : #api }
@@ -104,10 +106,17 @@ VisibilityDeductor >> isPackagePublic: aPackage [
 
 { #category : #testing }
 VisibilityDeductor >> isTestClass: aClass [
-	^ aClass inheritsFrom: TestCase
+	^ (aClass inheritsFrom: TestCase) or: [
+		aClass name endsWith: 'Test' ]
 ]
 
 { #category : #testing }
 VisibilityDeductor >> isTestPackage: aPackage [
 	^ ('-' split: aPackage name) includesAnyOf: #(Test Tests)
+]
+
+{ #category : #testing }
+VisibilityDeductor >> isTraitClass: aClass [
+	^ (aClass inheritsFrom: Trait) or: [ 
+		(aClass name beginsWith: 'T') and: [ aClass name second isUppercase ] ]
 ]
